@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Caixa Eletrônico Simples</title>
+</head>
+<body>
+    <p>O caixa eletrônico está rodando</p>
+
+    <script>
+        let saldo = 1000.00;
+        let continuar = true;
+
+        while (continuar) {
+            const opcao = prompt(
+                "--- CAIXA ELETRÔNICO ---\n\n" +
+                `Saldo Atual: R$ ${saldo.toFixed(2)}\n\n` +
+                "Escolha uma opção:\n" +
+                "1. Depositar\n" +
+                "2. Sacar\n" +
+                "3. Consultar Saldo\n" +
+                "4. Sair"
+            );
+
+            switch (opcao) {
+                case "1": 
+                    const valorDeposito = parseFloat(prompt("Digite o valor para depósito:"));
+                    if (isNaN(valorDeposito) || valorDeposito <= 0) {
+                        alert("Erro: Por favor, digite um valor válido.");
+                    } else {
+                        saldo += valorDeposito;
+                        alert("Depósito realizado com sucesso!");
+                    }
+                    break;
+
+                case "2": 
+                    const valorSaque = parseFloat(prompt("Digite o valor para saque:"));
+                    if (isNaN(valorSaque) || valorSaque <= 0) {
+                        alert("Erro: Por favor, digite um valor válido.");
+                    } else if (valorSaque > saldo) {
+                        alert("Erro: Saldo insuficiente.");
+                    } else {
+                        saldo -= valorSaque;
+                        alert("Saque realizado com sucesso!");
+                    }
+                    break;
+
+                case "3": 
+                    alert(`Seu saldo atual é: R$ ${saldo.toFixed(2)}`);
+                    break;
+
+                case "4": 
+                    continuar = false;
+                    break;
+
+                default: 
+                    alert("Opção inválida. Por favor, tente novamente.");
+                    break;
+            }
+        }
+
+        alert("Obrigado por usar nosso caixa eletrônico!");
+
+    </script>
+</body>
+</html>
